@@ -70,7 +70,7 @@ Convert all PST files in the current folder to EML and save them to folder `~/Da
 for f in `ls *.pst`; do mkdir ~/Datashare/$f && readpst -D -o ~/Datashare/$f -S -r -e $f; done
 ```
 
-## Convert EML to PDF
+## Convert EML/MSG to PDF
 
 Despite EML being a popular format and easily opened by email clients, your search tool may only support regular PDFs.
 
@@ -121,4 +121,24 @@ Convert all PST files in the current folder to MBOX and save them to folder `~/D
 
 ```sh
 for f in `ls *.pst`; do java -jar pstconv-0.9.7.jar -i $f -o ~/Datashare -f mbox; done
+```
+
+## Convert MBOX to EML
+
+Sometimes you may encounter archives consisting of MBOX files. These can be imported into Thunderbird; however, if you plan to use programs for automated searching, the large MBOX files may not be processed correctly and may not be fully indexed.
+
+To resolve this issue, you can convert MBOX into a multiple EML files.
+
+### mboxzilla
+
+We will use a powerfull tool [mboxzilla](https://github.com/noelmartinon/mboxzilla) working with MBOX files in different ways: splitting, converting to EML, cleaning, etc.
+
+Environments:
+**MacOS**: [download](https://github.com/soxoj/mboxzilla/releases/download/macos-m2/mboxzilla)
+**Linux**: [download](https://github.com/noelmartinon/mboxzilla/releases/download/1.3.0/mboxzilla_1.3.0_debian.bin)
+**Windows x64**: [download](https://github.com/noelmartinon/mboxzilla/releases/download/1.3.0/mboxzilla_1.3.0_win64.exe)
+
+Extract all emails from MBOX file:
+```sh
+mboxzilla -f MBOX_FILENAME -o OUTPUT_DIR -e
 ```
