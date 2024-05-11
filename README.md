@@ -64,7 +64,7 @@ Convert one file:
 readpst -D -S -r -e -o OUTPUT_DIR PST_FILENAME
 ```
 
-Convert all PST files in the current folder and save to folder `~/Datashare`:
+Convert all PST files in the current folder to EML and save them to folder `~/Datashare`:
 
 ```sh
 for f in `ls *.pst`; do mkdir ~/Datashare/$f && readpst -D -o ~/Datashare/$f -S -r -e $f; done
@@ -96,3 +96,29 @@ java -jar emailconverter-2.6.0-all.jar 19.eml -gui
 ```
 
 <img width="812" alt="email-to-pdf-converter" src="https://github.com/soxoj/email-archive-analysis/assets/31013580/1ade502b-d9d5-4560-9009-5171e2bf305b">
+
+## Convert PST to MBOX/EML
+
+Converting PST to MBOX is somewhat of an exotic task because MBOX files are large, undivided files consisting of email headers, HTML, and Base64 encoded email bodies. However, this conversion might be necessary to prepare MBOX files for import into your email client.
+
+### pstconv
+
+**Warning: [pstconv](https://github.com/cjmach/pstconv) does not automatically handle directory encodings, which is critical for files in other languages**
+
+Environment: **MacOS:** (You need Java installed)
+
+```sh
+wget https://github.com/soxoj/pstconv/raw/main/pstconv-0.9.7.jar
+```
+
+Convert one file to MBOX format (alternatively, you can put `eml` and have EML output):
+
+```sh
+java -jar pstconv-0.9.7.jar -i INPUT_FILE.pst -o OUTPUT_DIR -f mbox
+```
+
+Convert all PST files in the current folder to MBOX and save them to folder `~/Datashare`:
+
+```sh
+for f in `ls *.pst`; do java -jar pstconv-0.9.7.jar -i $f -o ~/Datashare -f mbox; done
+```
