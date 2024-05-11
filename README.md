@@ -74,7 +74,7 @@ for f in `ls *.pst`; do mkdir ~/Datashare/$f && readpst -D -o ~/Datashare/$f -S 
 
 Despite EML being a popular format and easily opened by email clients, your search tool may only support regular PDFs.
 
-We will use [email-to-pdf-converter](https://github.com/nickrussler/email-to-pdf-converter) project, which suggest CLI and GUI interfaces to convert files.
+We will use [email-to-pdf-converter](https://github.com/nickrussler/email-to-pdf-converter) project, which suggests CLI and GUI interfaces to convert files.
 
 Environment: **MacOS** (You need Java installed)
 
@@ -86,13 +86,13 @@ wget https://github.com/nickrussler/email-to-pdf-converter/releases/download/2.6
 Convert one file + extract attachments:
 
 ```sh
-java -jar emailconverter-2.6.0-all.jar FILENAME.eml -a
+java -jar emailconverter-2.6.0-all.jar FILENAME_EML_OR_MSG -a
 ```
 
-Run converter in graphical interface:
+Run the converter in the graphical interface:
 
 ```sh
-java -jar emailconverter-2.6.0-all.jar 19.eml -gui
+java -jar emailconverter-2.6.0-all.jar -gui
 ```
 
 <img width="812" alt="email-to-pdf-converter" src="https://github.com/soxoj/email-archive-analysis/assets/31013580/1ade502b-d9d5-4560-9009-5171e2bf305b">
